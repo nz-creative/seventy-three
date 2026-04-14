@@ -3,6 +3,8 @@
  * Use with Tailwind: hsl(var(--token) / <alpha-value>)
  */
 
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap");
+
 :root {
   /* Core surfaces */
   --background: 220 18% 97%;
@@ -38,9 +40,9 @@
   /* Radius (rem) */
   --radius: 0.5rem;
 
-  /* Typography */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji";
+  /* Typography — DM Sans as default display/body; swap via --font-sans in apps */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }

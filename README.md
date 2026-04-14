@@ -12,7 +12,7 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 ## Apps
 
 - **`apps/storybook`** — component development and a11y addon
-- **`apps/docs`** — Next.js marketing / getting-started surface
+- **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens** (semantic palette + swatches), and **Typography** (DM Sans defaults)
 
 ## Development
 
