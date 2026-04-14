@@ -1,56 +1,69 @@
+import Link from "next/link";
+
 import { Button } from "@seventythree/ui";
+
+import { DocPage, DocSection } from "../components/doc-page";
+import { InlineCode } from "../components/inline-code";
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex max-w-2xl flex-col gap-10 px-6 py-16">
-      <div className="space-y-4">
-        <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          Design system
+    <DocPage
+      title="Seventy-Three"
+      description="Semantic CSS variables, a Tailwind preset, and React components built with Radix and CVA — aligned with the shadcn stack."
+    >
+      <DocSection title="Principles">
+        <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <strong>Tokens first.</strong> Color and radius flow from CSS
+            variables so themes and dark mode stay consistent.
+          </li>
+          <li>
+            <strong>Accessible primitives.</strong> Behavior comes from Radix
+            where it matters; styling stays thin and predictable.
+          </li>
+          <li>
+            <strong>Apps own composition.</strong> The package ships building
+            blocks; product layouts live in your application.
+          </li>
+        </ul>
+      </DocSection>
+
+      <DocSection title="Preview">
+        <div className="flex flex-wrap gap-3">
+          <Button>Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+        </div>
+      </DocSection>
+
+      <DocSection title="Next steps">
+        <p>
+          Start with{" "}
+          <Link
+            href="/installation"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Installation
+          </Link>{" "}
+          to wire Tailwind and the theme stylesheet, then read{" "}
+          <Link
+            href="/tokens"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Tokens
+          </Link>{" "}
+          for the semantic palette. Use{" "}
+          <InlineCode>font-sans</InlineCode> and{" "}
+          <InlineCode>font-mono</InlineCode> from the preset; see{" "}
+          <Link
+            href="/typography"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Typography
+          </Link>{" "}
+          for defaults and overrides.
         </p>
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground">
-          Seventy-Three
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Semantic CSS variables, Tailwind preset, and React components built
-          with Radix primitives and CVA — aligned with the shadcn stack you
-          already use.
-        </p>
-      </div>
-      <div className="flex flex-wrap gap-3">
-        <Button>Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="outline">Outline</Button>
-      </div>
-      <section className="space-y-3 rounded-lg border border-border bg-card p-6 text-card-foreground">
-        <h2 className="text-lg font-medium">Using in an app</h2>
-        <ol className="list-decimal space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>
-            Install{" "}
-            <code className="rounded bg-muted px-1 py-0.5 font-mono text-foreground">
-              @seventythree/ui
-            </code>{" "}
-            and{" "}
-            <code className="rounded bg-muted px-1 py-0.5 font-mono text-foreground">
-              @seventythree/tokens
-            </code>
-            .
-          </li>
-          <li>
-            Add the Tailwind preset from{" "}
-            <code className="rounded bg-muted px-1 py-0.5 font-mono text-foreground">
-              @seventythree/ui/tailwind-preset
-            </code>{" "}
-            and import the theme CSS once.
-          </li>
-          <li>
-            Toggle dark mode with{" "}
-            <code className="rounded bg-muted px-1 py-0.5 font-mono text-foreground">
-              class=&quot;dark&quot;
-            </code>{" "}
-            on the root element.
-          </li>
-        </ol>
-      </section>
-    </main>
+      </DocSection>
+    </DocPage>
   );
 }
