@@ -1,0 +1,76 @@
+/**
+ * Seventy-Three — semantic tokens (HSL components, no hsl() wrapper)
+ * Use with Tailwind: hsl(var(--token) / <alpha-value>)
+ */
+
+:root {
+  /* Core surfaces */
+  --background: 220 18% 97%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  /* Brand — cool ink + electric accent */
+  --primary: 222 62% 28%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 220 14% 92%;
+  --secondary-foreground: 222 40% 18%;
+
+  --muted: 220 14% 92%;
+  --muted-foreground: 220 9% 38%;
+
+  --accent: 187 72% 42%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 72% 48%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Chrome */
+  --border: 220 13% 88%;
+  --input: 220 13% 88%;
+  --ring: 187 72% 38%;
+
+  /* Radius (rem) */
+  --radius: 0.5rem;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+.dark {
+  --background: 222 47% 7%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 40% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 40% 10%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 210 40% 96%;
+  --primary-foreground: 222 47% 11%;
+
+  --secondary: 217 19% 18%;
+  --secondary-foreground: 210 40% 96%;
+
+  --muted: 217 19% 18%;
+  --muted-foreground: 215 16% 65%;
+
+  --accent: 187 65% 48%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 62% 42%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217 19% 22%;
+  --input: 217 19% 22%;
+  --ring: 187 55% 52%;
+}

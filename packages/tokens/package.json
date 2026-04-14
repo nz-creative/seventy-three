@@ -1,0 +1,22 @@
+{
+  "name": "@seventythree/tokens",
+  "version": "0.1.0",
+  "description": "CSS design tokens for the Seventy-Three design system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/seventy-three.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./themes/seventythree.css": "./dist/themes/seventythree.css"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/themes && cp src/themes/seventythree.css dist/themes/seventythree.css"
+  }
+}
