@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 
+// CDN webfonts (docs app uses next/font instead). Theme: seventythree → primitives + semantics.
+import "@seventythree/tokens/themes/webfonts.css";
 import "@seventythree/tokens/themes/seventythree.css";
 import "../src/styles.css";
 

@@ -1,78 +1,105 @@
 /**
- * Seventy-Three — semantic tokens (HSL components, no hsl() wrapper)
- * Use with Tailwind: hsl(var(--token) / <alpha-value>)
+ * Seventy-Three — semantic theme tokens (colors)
+ *
+ * Primitives (palette, spacing, type scale, fonts, shadow, radius) live in
+ * primitives.css. This file maps semantic roles (--background, --primary, …)
+ * → var(--palette-…). Color values use HSL triplets for Tailwind:
+ * hsl(var(--token) / <alpha-value>)
  */
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap");
+@import "./primitives.css";
 
 :root {
-  /* Core surfaces */
-  --background: 220 18% 97%;
-  --foreground: 222 47% 11%;
+  /* Surfaces */
+  --background: var(--palette-neutral-50);
+  --foreground: var(--palette-neutral-900);
 
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card: var(--palette-neutral-0);
+  --card-foreground: var(--palette-neutral-900);
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover: var(--palette-neutral-0);
+  --popover-foreground: var(--palette-neutral-900);
 
-  /* Brand — cool ink + electric accent */
-  --primary: 222 62% 28%;
-  --primary-foreground: 210 40% 98%;
+  /* Brand */
+  --primary: var(--palette-brand-700);
+  --primary-foreground: var(--palette-fg-on-dark);
 
-  --secondary: 220 14% 92%;
-  --secondary-foreground: 222 40% 18%;
+  --secondary: var(--palette-neutral-100);
+  --secondary-foreground: var(--palette-neutral-800);
 
-  --muted: 220 14% 92%;
-  --muted-foreground: 220 9% 38%;
+  --muted: var(--palette-neutral-100);
+  --muted-foreground: var(--palette-neutral-600);
 
-  --accent: 187 72% 42%;
-  --accent-foreground: 210 40% 98%;
+  --accent: var(--palette-accent-500);
+  --accent-foreground: var(--palette-fg-on-dark);
 
-  --destructive: 0 72% 48%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: var(--palette-danger-500);
+  --destructive-foreground: var(--palette-fg-on-dark);
+
+  /* Status */
+  --success: var(--palette-success-500);
+  --success-foreground: var(--palette-fg-on-dark);
+
+  --warning: var(--palette-warning-500);
+  --warning-foreground: var(--palette-fg-on-light);
+
+  --info: var(--palette-info-500);
+  --info-foreground: var(--palette-fg-on-dark);
 
   /* Chrome */
-  --border: 220 13% 88%;
-  --input: 220 13% 88%;
-  --ring: 187 72% 38%;
+  --border: var(--palette-neutral-200);
+  --input: var(--palette-neutral-200);
+  --ring: var(--palette-accent-600);
 
-  /* Radius (rem) */
-  --radius: 0.5rem;
-
-  /* Typography — DM Sans as default display/body; swap via --font-sans in apps */
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  /* Data visualization */
+  --chart-1: var(--palette-chart-1);
+  --chart-2: var(--palette-chart-2);
+  --chart-3: var(--palette-chart-3);
+  --chart-4: var(--palette-chart-4);
+  --chart-5: var(--palette-chart-5);
 }
 
 .dark {
-  --background: 222 47% 7%;
-  --foreground: 210 40% 98%;
+  --background: var(--palette-neutral-950);
+  --foreground: var(--palette-fg-on-dark);
 
-  --card: 222 40% 10%;
-  --card-foreground: 210 40% 98%;
+  --card: var(--palette-dark-neutral-925);
+  --card-foreground: var(--palette-fg-on-dark);
 
-  --popover: 222 40% 10%;
-  --popover-foreground: 210 40% 98%;
+  --popover: var(--palette-dark-neutral-925);
+  --popover-foreground: var(--palette-fg-on-dark);
 
-  --primary: 210 40% 96%;
-  --primary-foreground: 222 47% 11%;
+  --primary: var(--palette-fg-on-dark);
+  --primary-foreground: var(--palette-neutral-900);
 
-  --secondary: 217 19% 18%;
-  --secondary-foreground: 210 40% 96%;
+  --secondary: var(--palette-dark-surface-muted);
+  --secondary-foreground: var(--palette-fg-on-dark);
 
-  --muted: 217 19% 18%;
-  --muted-foreground: 215 16% 65%;
+  --muted: var(--palette-dark-surface-muted);
+  --muted-foreground: var(--palette-dark-fg-muted);
 
-  --accent: 187 65% 48%;
-  --accent-foreground: 222 47% 11%;
+  --accent: var(--palette-accent-400);
+  --accent-foreground: var(--palette-fg-on-light);
 
-  --destructive: 0 62% 42%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: var(--palette-danger-600);
+  --destructive-foreground: var(--palette-fg-on-dark);
 
-  --border: 217 19% 22%;
-  --input: 217 19% 22%;
-  --ring: 187 55% 52%;
+  --success: var(--palette-dark-success);
+  --success-foreground: var(--palette-fg-on-dark);
+
+  --warning: var(--palette-dark-warning);
+  --warning-foreground: var(--palette-fg-on-light);
+
+  --info: var(--palette-dark-info);
+  --info-foreground: var(--palette-fg-on-dark);
+
+  --border: var(--palette-dark-border);
+  --input: var(--palette-dark-border);
+  --ring: var(--palette-dark-ring);
+
+  --chart-1: var(--palette-dark-chart-1);
+  --chart-2: var(--palette-dark-chart-2);
+  --chart-3: var(--palette-dark-chart-3);
+  --chart-4: var(--palette-dark-chart-4);
+  --chart-5: var(--palette-dark-chart-5);
 }

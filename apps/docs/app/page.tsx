@@ -53,7 +53,8 @@ export default function HomePage() {
             Tokens
           </Link>{" "}
           for the semantic palette. Use{" "}
-          <InlineCode>font-sans</InlineCode> and{" "}
+          <InlineCode>font-sans</InlineCode>,{" "}
+          <InlineCode>font-display</InlineCode>, and{" "}
           <InlineCode>font-mono</InlineCode> from the preset; see{" "}
           <Link
             href="/typography"

@@ -42,6 +42,30 @@ export default function InstallationPage() {
           <code>{`import "@seventythree/tokens/themes/seventythree.css";
 import "./globals.css";`}</code>
         </pre>
+        <p className="text-sm text-muted-foreground">
+          That entry imports <InlineCode>primitives.css</InlineCode> (palette, type
+          scale, font stack variables, …) and semantic colors in{" "}
+          <InlineCode>seventythree.css</InlineCode>. Load webfont files separately
+          — see <strong>Fonts</strong> below.
+        </p>
+      </DocSection>
+
+      <DocSection title="2b. Fonts">
+        <p>
+          <strong>Next.js (recommended):</strong> use{" "}
+          <InlineCode>next/font/google</InlineCode> for DM Sans and DM Serif
+          Display, set <InlineCode>variable: &quot;--font-sans&quot;</InlineCode>{" "}
+          and <InlineCode>&quot;--font-display&quot;</InlineCode>, and add those
+          classes to <InlineCode>&lt;html&gt;</InlineCode>. This docs site does
+          that in <InlineCode>app/layout.tsx</InlineCode> so fonts are
+          self-hosted at build time (no runtime request to Google).
+        </p>
+        <p className="mt-3">
+          <strong>Other setups:</strong> import optional{" "}
+          <InlineCode>@seventythree/tokens/themes/webfonts.css</InlineCode>{" "}
+          <em>before</em> <InlineCode>seventythree.css</InlineCode> to load the
+          same faces from Google Fonts (Storybook in this repo uses that path).
+        </p>
       </DocSection>
 
       <DocSection title="3. Tailwind config">
@@ -94,9 +118,11 @@ export default {
       <DocSection title="5. Dark mode">
         <p>
           Toggle dark theme by adding <InlineCode>class=&quot;dark&quot;</InlineCode>{" "}
-          on <InlineCode>&lt;html&gt;</InlineCode> (or a root wrapper). All
-          semantic colors read from the <InlineCode>.dark</InlineCode> block in
-          the theme CSS.
+          on <InlineCode>&lt;html&gt;</InlineCode> (or a root wrapper). Semantic
+          colors swap in the <InlineCode>.dark</InlineCode> block in{" "}
+          <InlineCode>seventythree.css</InlineCode>; shadow tokens are retuned for
+          dark surfaces in <InlineCode>.dark</InlineCode> in{" "}
+          <InlineCode>primitives.css</InlineCode>.
         </p>
         <pre className="overflow-x-auto rounded-lg border border-border bg-muted p-4 font-mono text-sm text-foreground">
           <code>{`<html lang="en" className={dark ? "dark" : undefined}>`}</code>

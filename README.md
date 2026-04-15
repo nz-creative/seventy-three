@@ -6,13 +6,13 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 
 | Package | Description |
 |--------|-------------|
-| [`@seventythree/tokens`](./packages/tokens) | Theme CSS (`seventythree.css`) — light/dark via `.dark` |
+| [`@seventythree/tokens`](./packages/tokens) | `primitives.css` (palette, font stacks, space, type, shadow, radius), optional `webfonts.css` (Google CDN), `seventythree.css` (semantic colors) — light/dark via `.dark`. Next.js apps should use `next/font` instead of `webfonts.css`. |
 | [`@seventythree/ui`](./packages/ui) | Components, `cn()`, and `tailwind-preset` export |
 
 ## Apps
 
 - **`apps/storybook`** — component development and a11y addon
-- **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens** (semantic palette + swatches), and **Typography** (DM Sans defaults)
+- **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens** (primitives + semantics + swatches), and **Typography**
 
 ## Development
 

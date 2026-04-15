@@ -26,6 +26,10 @@ const config: StorybookConfig = {
         tokensRoot,
         "src/themes/seventythree.css",
       ),
+      "@seventythree/tokens/themes/webfonts.css": path.join(
+        tokensRoot,
+        "src/themes/webfonts.css",
+      ),
     };
     // GitHub Pages project sites live at /<repo>/; set STORYBOOK_BASE_PATH in CI (e.g. /seventy-three/).
     const base = process.env.STORYBOOK_BASE_PATH?.trim();

@@ -1,0 +1,8 @@
+/**
+ * Optional Google Fonts loader for DM Sans + DM Serif Display.
+ *
+ * Next.js apps should prefer `next/font/google` (self-hosted at build time) and
+ * omit this file. Import before `seventythree.css` when you need CDN webfonts.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=DM+Serif+Display:ital@0;1&display=swap");

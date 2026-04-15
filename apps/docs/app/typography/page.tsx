@@ -11,13 +11,15 @@ export default function TypographyPage() {
   return (
     <DocPage
       title="Typography"
-      description="Seventy-Three defaults to DM Sans for UI type, loaded by the theme stylesheet. Monospace uses the system stack for code."
+      description="DM Sans for UI body, DM Serif Display for display headlines via font-display. Monospace uses the system stack for code."
     >
       <DocSection title="Sans (UI)">
         <p>
-          The theme CSS sets <InlineCode>--font-sans</InlineCode> to{" "}
-          <strong>DM Sans</strong> and imports it from Google Fonts. Tailwind
-          maps <InlineCode>font-sans</InlineCode> to{" "}
+          <InlineCode>primitives.css</InlineCode> defines the{" "}
+          <InlineCode>--font-sans</InlineCode> stack (DM Sans first). This docs
+          app loads the files with <InlineCode>next/font/google</InlineCode> so
+          they are bundled — no Google Fonts request at runtime. Tailwind maps{" "}
+          <InlineCode>font-sans</InlineCode> to{" "}
           <InlineCode>var(--font-sans)</InlineCode> via the UI preset.
         </p>
         <p>
@@ -27,11 +29,32 @@ export default function TypographyPage() {
         </p>
       </DocSection>
 
+      <DocSection title="Display (headlines)">
+        <p>
+          <InlineCode>--font-display</InlineCode> defaults to{" "}
+          <strong>DM Serif Display</strong> (also loaded via{" "}
+          <InlineCode>next/font</InlineCode> here; optional{" "}
+          <InlineCode>webfonts.css</InlineCode> for non-Next apps). Use{" "}
+          <InlineCode>className=&quot;font-display&quot;</InlineCode>{" "}
+          for page titles, hero headings, and marketing emphasis. Body copy stays{" "}
+          <InlineCode>font-sans</InlineCode>.
+        </p>
+        <p className="font-display text-2xl font-semibold tracking-tight text-foreground">
+          Display preview — Seventy-Three
+        </p>
+      </DocSection>
+
       <DocSection title="Scale (Tailwind)">
         <p>
-          Use Tailwind type utilities (<InlineCode>text-sm</InlineCode>,{" "}
-          <InlineCode>text-lg</InlineCode>, <InlineCode>font-medium</InlineCode>
-          , <InlineCode>tracking-tight</InlineCode>) for scale and weight.
+          Size and line-height come from <InlineCode>primitives.css</InlineCode>{" "}
+          (<InlineCode>--text-*</InlineCode> / <InlineCode>--leading-*</InlineCode>
+          ); the preset maps <InlineCode>text-sm</InlineCode>,{" "}
+          <InlineCode>text-base</InlineCode>, etc. to those variables. Use{" "}
+          <InlineCode>font-medium</InlineCode>, <InlineCode>tracking-tight</InlineCode>
+          , and letter-spacing tokens (<InlineCode>tracking-wide</InlineCode>, …)
+          for weight and density.
+        </p>
+        <p>
           Dedicated semantic text components can be added to{" "}
           <InlineCode>@seventythree/ui</InlineCode> later if you want fixed
           recipes (e.g. <InlineCode>Text</InlineCode> /{" "}
@@ -43,19 +66,21 @@ export default function TypographyPage() {
         <p>
           Use <InlineCode>font-mono</InlineCode> for inline code, props, and
           snippets. The stack is defined by <InlineCode>--font-mono</InlineCode>{" "}
-          in the theme CSS.
+          in <InlineCode>primitives.css</InlineCode>.
         </p>
         <p className="font-mono text-sm text-card-foreground">
           Example: const theme = &quot;seventythree&quot;;
         </p>
       </DocSection>
 
-      <DocSection title="Overriding the sans font">
+      <DocSection title="Overriding fonts">
         <p>
-          To use a different face, set <InlineCode>--font-sans</InlineCode> on{" "}
-          <InlineCode>:root</InlineCode> after importing the theme, or replace the{" "}
-          <InlineCode>@import</InlineCode> in a forked theme file. Keep the same
-          variable name so the Tailwind preset stays valid.
+          Keep <InlineCode>--font-sans</InlineCode> /{" "}
+          <InlineCode>--font-display</InlineCode> in sync with how you load
+          faces: adjust <InlineCode>next/font</InlineCode> in the layout, edit
+          stacks in <InlineCode>primitives.css</InlineCode>, or add another{" "}
+          <InlineCode>@font-face</InlineCode> / CDN import. Variable names must
+          stay aligned with the Tailwind preset.
         </p>
       </DocSection>
     </DocPage>

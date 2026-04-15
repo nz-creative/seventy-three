@@ -1,7 +1,7 @@
 {
   "name": "@seventythree/tokens",
   "version": "0.1.0",
-  "description": "CSS design tokens for the Seventy-Three design system",
+  "description": "CSS design tokens: primitives, optional webfonts.css (Google CDN), seventythree semantic theme",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,9 +14,11 @@
     "dist"
   ],
   "exports": {
-    "./themes/seventythree.css": "./dist/themes/seventythree.css"
+    "./themes/seventythree.css": "./dist/themes/seventythree.css",
+    "./themes/primitives.css": "./dist/themes/primitives.css",
+    "./themes/webfonts.css": "./dist/themes/webfonts.css"
   },
   "scripts": {
-    "build": "mkdir -p dist/themes && cp src/themes/seventythree.css dist/themes/seventythree.css"
+    "build": "mkdir -p dist/themes && cp src/themes/*.css dist/themes/"
   }
 }
