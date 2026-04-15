@@ -23,6 +23,20 @@ pnpm storybook   # http://localhost:6006
 pnpm --filter @seventythree/docs dev
 ```
 
+## Storybook on GitHub Pages
+
+After you enable **GitHub Pages** for this repository (**Settings → Pages → Build and deployment: GitHub Actions**), pushes to `main` run [`.github/workflows/deploy-storybook.yml`](./.github/workflows/deploy-storybook.yml) and publish static Storybook.
+
+The live URL for a project site is:
+
+`https://<owner>.github.io/<repo>/`
+
+The Storybook Vite `base` is set in CI via `STORYBOOK_BASE_PATH` (defaults to `/<repository name>/`). For a local static build that mimics Pages, run:
+
+```bash
+STORYBOOK_BASE_PATH=/seventy-three/ pnpm build-storybook
+```
+
 ## Publishing
 
 Uses [Changesets](https://github.com/changesets/changesets). From the repo root:
