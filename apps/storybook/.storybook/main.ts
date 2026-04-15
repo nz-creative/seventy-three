@@ -21,6 +21,11 @@ const config: StorybookConfig = {
       ...config.resolve.alias,
       "@seventythree/ui": path.resolve(dirname, "../../../packages/ui/src"),
     };
+    // GitHub Pages project sites live at /<repo>/; set STORYBOOK_BASE_PATH in CI (e.g. /seventy-three/).
+    const base = process.env.STORYBOOK_BASE_PATH?.trim();
+    if (base) {
+      config.base = base.endsWith("/") ? base : `${base}/`;
+    }
     return config;
   },
 };
