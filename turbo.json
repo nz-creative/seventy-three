@@ -1,9 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": ["DOCS_BASE_PATH", "DOCS_STATIC_EXPORT"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "storybook-static/**"]
+      "outputs": ["dist/**", ".next/**", "storybook-static/**", "out/**"]
     },
     "dev": {
       "cache": false,

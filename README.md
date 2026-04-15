@@ -23,13 +23,23 @@ pnpm storybook   # http://localhost:6006
 pnpm --filter @seventythree/docs dev
 ```
 
-## Storybook on GitHub Pages
+## GitHub Pages
 
-After you enable **GitHub Pages** for this repository (**Settings → Pages → Build and deployment: GitHub Actions**), pushes to `main` run [`.github/workflows/deploy-storybook.yml`](./.github/workflows/deploy-storybook.yml) and publish static Storybook.
+After you enable **GitHub Pages** (**Settings → Pages → Build and deployment: GitHub Actions**), pushes to `main` run [`.github/workflows/deploy-site.yml`](./.github/workflows/deploy-site.yml) and publish the combined static site.
 
-The live URL for a project site is:
+### Published URLs
+
+For a **project** site (repo `seventy-three` under an org or user), the base is:
 
 `https://<owner>.github.io/<repo>/`
+
+| Path | What loads |
+|------|----------------|
+| `/` | Storybook (components, a11y) |
+| `/docs/` | Next.js docs — overview, installation, **tokens**, typography |
+| `/docs/tokens/` | Tokens reference (not `/tokens` at the root; that path is not part of the Storybook bundle) |
+
+Example: `https://<owner>.github.io/seventy-three/docs/tokens/`
 
 The Storybook Vite `base` is set in CI via `STORYBOOK_BASE_PATH` (defaults to `/<repository name>/`). For a local static build that mimics Pages, run:
 

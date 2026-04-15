@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 3000",
     "build": "next build",
+    "build:static": "DOCS_STATIC_EXPORT=1 DOCS_BASE_PATH=/docs next build",
     "start": "next start",
     "lint": "eslint ."
   },

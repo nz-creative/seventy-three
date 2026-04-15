@@ -15,6 +15,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   ...compat.extends("next/core-web-vitals"),
   {
-    ignores: [".next/**", "next-env.d.ts"],
+    ignores: [".next/**", "out/**", "next-env.d.ts"],
   }
 );

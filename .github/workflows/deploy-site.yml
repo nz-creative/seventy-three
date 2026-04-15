@@ -1,4 +1,5 @@
-name: Deploy Storybook to GitHub Pages
+# Storybook at site root + Next.js docs under /docs/ (merged into one Pages artifact).
+name: Deploy site to GitHub Pages
 
 on:
   push:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-storybook
+  group: pages-site
   cancel-in-progress: true
 
 jobs:
@@ -33,6 +34,18 @@ jobs:
         env:
           STORYBOOK_BASE_PATH: /${{ github.event.repository.name }}/
         run: pnpm build-storybook
+
+      - name: Build docs site (static, /docs)
+        env:
+          DOCS_STATIC_EXPORT: "1"
+          DOCS_BASE_PATH: "/docs"
+        run: pnpm --filter @seventythree/docs build
+
+      - name: Lay out docs export for Pages (/docs/* paths)
+        run: bash scripts/layout-docs-export-for-pages.sh
+
+      - name: Merge docs into Pages artifact
+        run: cp -r apps/docs/out/docs apps/storybook/storybook-static/docs
 
       - uses: actions/upload-pages-artifact@v5
         with:

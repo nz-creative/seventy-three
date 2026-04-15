@@ -30,6 +30,22 @@ const config: StorybookConfig = {
         tokensRoot,
         "src/themes/webfonts.css",
       ),
+      "@seventythree/tokens/themes/primitives.css": path.join(
+        tokensRoot,
+        "src/themes/primitives.css",
+      ),
+    };
+    // Avoid watching prior `build-storybook` output — otherwise Vite HMR reloads in a loop.
+    config.server ??= {};
+    const prevIgnored = config.server.watch?.ignored;
+    const extraIgnored = "**/storybook-static/**";
+    config.server.watch = {
+      ...config.server.watch,
+      ignored: Array.isArray(prevIgnored)
+        ? [...prevIgnored, extraIgnored]
+        : prevIgnored
+          ? [prevIgnored, extraIgnored]
+          : [extraIgnored],
     };
     // GitHub Pages project sites live at /<repo>/; set STORYBOOK_BASE_PATH in CI (e.g. /seventy-three/).
     const base = process.env.STORYBOOK_BASE_PATH?.trim();
