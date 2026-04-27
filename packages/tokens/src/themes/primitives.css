@@ -141,32 +141,37 @@
   --space-page-gutter: var(--space-6);
   --space-section-y: var(--space-16);
 
-  /* Layout — typography scale + line-height (Tailwind fontSize) */
-  --text-xs: 0.75rem;
+  /* -------------------------------------------------------------------------
+     Layout — typography (Major Third modular scale, ratio 1.25)
+     Steps from 16px body (1rem): … ×1.25^n. Tailwind text-* maps here via preset.
+     xs/sm = two steps below base; base…9xl = base and nine steps up.
+     ------------------------------------------------------------------------- */
+  --type-scale-ratio: 1.25;
+  --text-xs: 0.625rem; /* ~10px — captions; prefer sm+ for long UI copy */
   --leading-xs: 1rem;
-  --text-sm: 0.875rem;
+  --text-sm: 0.8125rem; /* 13px */
   --leading-sm: 1.25rem;
-  --text-base: 1rem;
+  --text-base: 1rem; /* 16px — body */
   --leading-base: 1.5rem;
-  --text-lg: 1.125rem;
+  --text-lg: 1.25rem; /* 20px */
   --leading-lg: 1.75rem;
-  --text-xl: 1.25rem;
-  --leading-xl: 1.75rem;
-  --text-2xl: 1.5rem;
-  --leading-2xl: 2rem;
-  --text-3xl: 1.875rem;
-  --leading-3xl: 2.25rem;
-  --text-4xl: 2.25rem;
-  --leading-4xl: 2.5rem;
-  --text-5xl: 3rem;
+  --text-xl: 1.5625rem; /* 25px */
+  --leading-xl: 2rem;
+  --text-2xl: 1.953125rem; /* ~31px */
+  --leading-2xl: 2.375rem;
+  --text-3xl: 2.44140625rem; /* ~39px */
+  --leading-3xl: 2.875rem;
+  --text-4xl: 3.0517578125rem; /* ~49px */
+  --leading-4xl: 3.5rem;
+  --text-5xl: 3.814697265625rem; /* ~61px */
   --leading-5xl: 1;
-  --text-6xl: 3.75rem;
+  --text-6xl: 4.76837158203125rem; /* ~76px */
   --leading-6xl: 1;
-  --text-7xl: 4.5rem;
+  --text-7xl: 5.9604644775390625rem; /* ~95px */
   --leading-7xl: 1;
-  --text-8xl: 6rem;
+  --text-8xl: 7.450580596923828rem; /* ~119px */
   --leading-8xl: 1;
-  --text-9xl: 8rem;
+  --text-9xl: 9.313225746154785rem; /* ~149px */
   --leading-9xl: 1;
 
   --tracking-tighter: -0.05em;

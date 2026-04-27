@@ -46,10 +46,18 @@ export default function TypographyPage() {
 
       <DocSection title="Scale (Tailwind)">
         <p>
-          Size and line-height come from <InlineCode>primitives.css</InlineCode>{" "}
-          (<InlineCode>--text-*</InlineCode> / <InlineCode>--leading-*</InlineCode>
-          ); the preset maps <InlineCode>text-sm</InlineCode>,{" "}
-          <InlineCode>text-base</InlineCode>, etc. to those variables. Use{" "}
+          Type sizes follow a <strong>Major Third</strong> modular scale (
+          <InlineCode>--type-scale-ratio: 1.25</InlineCode>) from a{" "}
+          <InlineCode>16px</InlineCode> body step: each Tailwind step up multiplies
+          by <InlineCode>1.25</InlineCode> (rounded to clean{" "}
+          <InlineCode>rem</InlineCode>). <InlineCode>text-xs</InlineCode> and{" "}
+          <InlineCode>text-sm</InlineCode> sit below body for captions and dense UI.
+        </p>
+        <p>
+          Values live in <InlineCode>primitives.css</InlineCode> as{" "}
+          <InlineCode>--text-*</InlineCode> and <InlineCode>--leading-*</InlineCode>
+          ; the preset maps <InlineCode>text-sm</InlineCode>,{" "}
+          <InlineCode>text-base</InlineCode>, etc. Use{" "}
           <InlineCode>font-medium</InlineCode>, <InlineCode>tracking-tight</InlineCode>
           , and letter-spacing tokens (<InlineCode>tracking-wide</InlineCode>, …)
           for weight and density.
