@@ -48,11 +48,17 @@ jobs:
           DOCS_REPO_ROOT: /${{ github.event.repository.name }}
         run: pnpm --filter @seventythree/docs run build:static
 
-      - name: Lay out docs export for Pages (/docs/* paths)
+      - name: Lay out docs export for Pages (if basePath is /docs only)
         run: bash scripts/layout-docs-export-for-pages.sh
 
       - name: Merge docs into Pages artifact
-        run: cp -r apps/docs/out/docs apps/storybook/storybook-static/docs
+        run: |
+          mkdir -p apps/storybook/storybook-static/docs
+          if [[ -d apps/docs/out/docs ]]; then
+            cp -r apps/docs/out/docs/. apps/storybook/storybook-static/docs/
+          else
+            cp -r apps/docs/out/. apps/storybook/storybook-static/docs/
+          fi
 
       - uses: actions/upload-pages-artifact@v5
         with:

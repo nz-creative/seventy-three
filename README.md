@@ -47,7 +47,7 @@ Example: `https://<owner>.github.io/seventy-three/docs/tokens/`
 2. Under **Settings → Pages**, ensure **Source** is **GitHub Actions** and wait a minute after a green deploy for the CDN to update.
 3. Storybook lives at the **repo root** `/`, not under `/docs/`. Use **`/docs/`** for the Next.js documentation site.
 
-The Storybook Vite `base` is set in CI via `STORYBOOK_BASE_PATH` (defaults to `/<repository name>/`). The docs static export sets **`DOCS_REPO_ROOT`** to the same segment so Next’s **`assetPrefix`** points CSS/JS at `/<repo>/docs/_next/...` (without it, `/docs/_next/...` resolves to the wrong host path and the site loads with no styles).
+The Storybook Vite `base` is set in CI via `STORYBOOK_BASE_PATH` (defaults to `/<repository name>/`). The docs static export sets **`DOCS_REPO_ROOT`** so Next uses **`basePath: /<repo>/docs`**, which makes **`href`** and **`_next`** URLs **`/<repo>/docs/...`** on disk and in HTML. Without that, `basePath: /docs` alone produces **`/docs/...`** links, which the browser resolves to **`github.io/docs/...`** instead of **`github.io/<repo>/docs/...`** (broken nav and missing CSS).
 
 Local mimic of a project Pages build:
 

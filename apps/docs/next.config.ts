@@ -8,28 +8,32 @@ import type { NextConfig } from "next";
 const pagesStaticExport =
   process.env.DOCS_STATIC_EXPORT === "1" &&
   process.env.NODE_ENV === "production";
-const pagesBasePath =
-  pagesStaticExport && process.env.DOCS_BASE_PATH?.trim()
-    ? process.env.DOCS_BASE_PATH.trim()
-    : undefined;
+
+function normalizeRepoRoot(raw: string): string {
+  const withSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withSlash.replace(/\/+$/, "") || "";
+}
 
 /**
- * GitHub **project** Pages serves the docs app under `/<repo>/docs/...`.
- * `basePath: /docs` makes Next emit `/docs/_next/...`, which the browser resolves
- * to the wrong path unless we also set `assetPrefix` to `/<repo>/docs` so
- * assets load from `/<repo>/docs/_next/...` (matches `out/docs/_next/` after layout).
- * Set `DOCS_REPO_ROOT` in CI to `/${{ github.event.repository.name }}` (e.g. `/seventy-three`).
+ * GitHub **project** Pages serves this app at `/<repo>/docs/...`.
+ *
+ * If we only set `basePath: /docs`, Next emits `href="/docs/tokens"` — the browser
+ * resolves that to `github.io/docs/tokens` (wrong). Use `/<repo>/docs` as
+ * `basePath` in CI so links and `_next` assets are `/<repo>/docs/...`.
+ *
+ * Locally (no `DOCS_REPO_ROOT`), keep `basePath` from `DOCS_BASE_PATH` (default
+ * `/docs`) so the layout script still nests files under `out/docs/`.
  */
-const pagesAssetPrefix = (() => {
-  if (!pagesStaticExport || !pagesBasePath) return undefined;
-  const raw = process.env.DOCS_REPO_ROOT?.trim();
-  if (!raw) return undefined;
-  const repo = (raw.startsWith("/") ? raw : `/${raw}`).replace(/\/+$/, "");
-  if (!repo) return undefined;
-  const base = pagesBasePath.startsWith("/")
-    ? pagesBasePath
-    : `/${pagesBasePath}`;
-  return `${repo}${base.replace(/\/+$/, "")}` || undefined;
+const pagesBasePath = (() => {
+  if (!pagesStaticExport) return undefined;
+  const repoRaw = process.env.DOCS_REPO_ROOT?.trim();
+  if (repoRaw) {
+    const repo = normalizeRepoRoot(repoRaw);
+    if (repo) return `${repo}/docs`;
+  }
+  const fromEnv = process.env.DOCS_BASE_PATH?.trim();
+  if (fromEnv) return fromEnv.startsWith("/") ? fromEnv : `/${fromEnv}`;
+  return "/docs";
 })();
 
 const nextConfig: NextConfig = {
@@ -37,7 +41,6 @@ const nextConfig: NextConfig = {
     ? { output: "export" as const, trailingSlash: true }
     : {}),
   ...(pagesBasePath ? { basePath: pagesBasePath } : {}),
-  ...(pagesAssetPrefix ? { assetPrefix: pagesAssetPrefix } : {}),
   transpilePackages: ["@seventythree/ui"],
 };
 
