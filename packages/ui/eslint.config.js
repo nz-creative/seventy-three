@@ -5,6 +5,6 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ["dist/**", "tailwind-preset.cjs"],
+    ignores: ["dist/**", "tailwind-preset.cjs", "vitest.config.ts"],
   }
 );

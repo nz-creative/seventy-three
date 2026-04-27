@@ -7,6 +7,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
     "storybook": "pnpm --filter @seventythree/storybook storybook",
     "build-storybook": "pnpm --filter @seventythree/storybook build-storybook"
   },
@@ -14,5 +15,15 @@
     "@changesets/cli": "^2.29.2",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@storybook/addon-a11y": "8.6.18",
+      "@storybook/addon-essentials": "8.6.18",
+      "@storybook/react": "8.6.18",
+      "@storybook/react-vite": "8.6.18",
+      "@storybook/test": "8.6.18",
+      "storybook": "8.6.18"
+    }
   }
 }

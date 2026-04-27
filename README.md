@@ -19,6 +19,7 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 ```bash
 pnpm install
 pnpm build
+pnpm test        # Vitest (e.g. `cn()` in @seventythree/ui)
 pnpm storybook   # http://localhost:6006
 pnpm --filter @seventythree/docs dev
 ```
