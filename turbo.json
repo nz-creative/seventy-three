@@ -1,6 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalPassThroughEnv": ["DOCS_BASE_PATH", "DOCS_STATIC_EXPORT"],
+  "globalPassThroughEnv": [
+    "DOCS_BASE_PATH",
+    "DOCS_STATIC_EXPORT",
+    "DOCS_REPO_ROOT"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

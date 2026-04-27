@@ -43,6 +43,9 @@ jobs:
       # Must use `build:static` — plain `build` does not set basePath/export and
       # will not produce `out/` for the Pages layout script.
       - name: Build docs site (static, /docs)
+        env:
+          # Prefix for /docs/_next/* so assets load under /<repo>/docs/... on project Pages
+          DOCS_REPO_ROOT: /${{ github.event.repository.name }}
         run: pnpm --filter @seventythree/docs run build:static
 
       - name: Lay out docs export for Pages (/docs/* paths)
