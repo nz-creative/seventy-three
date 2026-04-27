@@ -41,6 +41,12 @@ For a **project** site (repo `seventy-three` under an org or user), the base is:
 
 Example: `https://<owner>.github.io/seventy-three/docs/tokens/`
 
+### If the URL shows an error or 404
+
+1. Open **Actions** → **Deploy site to GitHub Pages** and confirm the latest run is **green**. Red runs mean nothing was published (open the failed job log).
+2. Under **Settings → Pages**, ensure **Source** is **GitHub Actions** and wait a minute after a green deploy for the CDN to update.
+3. Storybook lives at the **repo root** `/`, not under `/docs/`. Use **`/docs/`** for the Next.js documentation site.
+
 The Storybook Vite `base` is set in CI via `STORYBOOK_BASE_PATH` (defaults to `/<repository name>/`). For a local static build that mimics Pages, run:
 
 ```bash

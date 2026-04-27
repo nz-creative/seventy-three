@@ -30,16 +30,20 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Docs `build:static` is not a Turbo `build` task — workspace packages must
+      # have `dist/` (tokens) and built UI so Next can resolve imports.
+      - name: Build workspace packages (tokens + ui)
+        run: pnpm exec turbo run build --filter=@seventythree/tokens --filter=@seventythree/ui
+
       - name: Build Storybook
         env:
           STORYBOOK_BASE_PATH: /${{ github.event.repository.name }}/
         run: pnpm build-storybook
 
+      # Must use `build:static` — plain `build` does not set basePath/export and
+      # will not produce `out/` for the Pages layout script.
       - name: Build docs site (static, /docs)
-        env:
-          DOCS_STATIC_EXPORT: "1"
-          DOCS_BASE_PATH: "/docs"
-        run: pnpm --filter @seventythree/docs build
+        run: pnpm --filter @seventythree/docs run build:static
 
       - name: Lay out docs export for Pages (/docs/* paths)
         run: bash scripts/layout-docs-export-for-pages.sh
