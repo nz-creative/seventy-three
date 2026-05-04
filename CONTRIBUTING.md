@@ -29,7 +29,7 @@ If you only tweak **`type-scale.config.json`**, regenerate before opening a PR.
 pnpm storybook
 ```
 
-Stories live under **`apps/storybook/src/`**. Prefer **`tags: ['autodocs']`** and a short **`parameters.docs.description`** on the meta object when adding components.
+Stories live under **`apps/storybook/src/`**. **`eslint-plugin-jsx-a11y`** (recommended rules) runs on **`src/**` and `.storybook/**`** TSX/JSX — in addition to the **@storybook/addon-a11y** panel. Prefer **`tags: ['autodocs']`** and a short **`parameters.docs.description`** on the meta object when adding components.
 
 ## Design conventions
 
