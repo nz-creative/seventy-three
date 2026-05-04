@@ -5,7 +5,15 @@ import { Input, Label, Textarea } from "@seventythree/ui";
 const meta = {
   title: "Components/Form fields",
   component: Input,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Input, Textarea, and Label. Shared control styles come from `controlFieldBaseClasses` in the UI package. Pair `Label` `htmlFor` with the control `id`.",
+      },
+    },
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof Input>;
 

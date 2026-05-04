@@ -7,7 +7,7 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 | Package | Description |
 |--------|-------------|
 | [`@seventythree/tokens`](./packages/tokens) | `primitives.css` (palette, font stacks, space, type, shadow, radius), optional `webfonts.css` (Google CDN), `seventythree.css` (semantic colors) — light/dark via `.dark`. Next.js apps should use `next/font` instead of `webfonts.css`. |
-| [`@seventythree/ui`](./packages/ui) | Components, `cn()`, and `tailwind-preset` export |
+| [`@seventythree/ui`](./packages/ui) | Components, `cn()`, and `tailwind-preset` export — see [packages/ui/README.md](./packages/ui/README.md) |
 
 ## Apps
 
@@ -15,6 +15,8 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 - **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens**, **Typography**, **Components** (links to Storybook)
 
 ## Development
+
+- Storybook and contribution workflow: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ```bash
 pnpm install

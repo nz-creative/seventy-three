@@ -5,7 +5,15 @@ import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, Car
 const meta = {
   title: "Components/Card",
   component: Card,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Surface with optional header, body, and footer. Compose with Button and text utilities.",
+      },
+    },
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof Card>;
 

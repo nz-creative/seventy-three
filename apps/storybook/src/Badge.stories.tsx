@@ -5,7 +5,15 @@ import { Badge } from "@seventythree/ui";
 const meta = {
   title: "Components/Badge",
   component: Badge,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Status and emphasis chip. Renders a `span` for inline use in text; add `className` for flex row layout.",
+      },
+    },
+  },
   tags: ["autodocs"],
   argTypes: {
     variant: {

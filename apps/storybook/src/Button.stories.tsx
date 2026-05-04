@@ -7,6 +7,12 @@ const meta = {
   component: Button,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Primary actions and links. Use `asChild` to render as a child element (e.g. Next.js `Link`) with button styling.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
