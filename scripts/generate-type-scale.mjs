@@ -7,6 +7,7 @@
  *   node scripts/generate-type-scale.mjs
  *   node scripts/generate-type-scale.mjs --ratio 1.2
  *   node scripts/generate-type-scale.mjs --ratio 1.333 --dry-run
+ *   node scripts/generate-type-scale.mjs --check        # CI: fail if primitives.css drifts
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -58,18 +59,25 @@ function parseArgs() {
   const argv = process.argv.slice(2);
   let ratio = DEFAULT_RATIO;
   let dryRun = false;
+  let check = false;
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--ratio" && argv[i + 1]) {
       ratio = Number(argv[++i]);
     } else if (argv[i] === "--dry-run") {
       dryRun = true;
+    } else if (argv[i] === "--check") {
+      check = true;
     }
   }
   if (!Number.isFinite(ratio) || ratio <= 0) {
     console.error("Invalid --ratio; use a positive number (e.g. 1.25)");
     process.exit(1);
   }
-  return { ratio, dryRun };
+  if (dryRun && check) {
+    console.error("Use either --dry-run or --check, not both.");
+    process.exit(1);
+  }
+  return { ratio, dryRun, check };
 }
 
 function formatRem(rem) {
@@ -147,7 +155,7 @@ function inject(css, block) {
   return `${before}${MARKER_START}\n${block}  ${MARKER_END}${after}`;
 }
 
-const { ratio, dryRun } = parseArgs();
+const { ratio, dryRun, check } = parseArgs();
 const block = buildBlock(ratio);
 
 if (dryRun) {
@@ -156,6 +164,23 @@ if (dryRun) {
 }
 
 const css = fs.readFileSync(PRIMITIVES, "utf8");
+
+if (check) {
+  const next = inject(css, block);
+  if (css !== next) {
+    console.error(
+      `Type scale block in ${path.relative(REPO_ROOT, PRIMITIVES)} does not match generated output (ratio=${ratio}).\n` +
+        "Run: pnpm generate:type-scale\n" +
+        "Then commit the updated primitives.css.",
+    );
+    process.exit(1);
+  }
+  console.log(
+    `OK: type scale matches generator (ratio=${ratio}).`,
+  );
+  process.exit(0);
+}
+
 const next = inject(css, block);
 fs.writeFileSync(PRIMITIVES, next, "utf8");
 console.log(
