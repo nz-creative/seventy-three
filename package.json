@@ -8,6 +8,7 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
+    "generate:type-scale": "node scripts/generate-type-scale.mjs",
     "storybook": "pnpm --filter @seventythree/storybook storybook",
     "build-storybook": "pnpm --filter @seventythree/storybook build-storybook"
   },

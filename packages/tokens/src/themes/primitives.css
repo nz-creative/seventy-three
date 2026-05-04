@@ -141,38 +141,39 @@
   --space-page-gutter: var(--space-6);
   --space-section-y: var(--space-16);
 
+  /* TYPE-SCALE-BLOCK:START */
   /* -------------------------------------------------------------------------
-     Layout — typography (Major Third modular scale, ratio 1.25)
-     Steps from 16px body (1rem): … ×1.25^n. Tailwind text-* maps here via preset.
-     xs/sm = two steps below base; base…9xl = base and nine steps up.
+     Layout — typography (modular scale; regenerate with pnpm run generate:type-scale)
+     Ratio 1.25; base body 1rem (16px). xs/sm below base; base…9xl above.
      ------------------------------------------------------------------------- */
   --type-scale-ratio: 1.25;
-  --text-xs: 0.625rem; /* ~10px — captions; prefer sm+ for long UI copy */
+  --text-xs: 0.64rem; /* ~10px */
   --leading-xs: 1rem;
-  --text-sm: 0.8125rem; /* 13px */
+  --text-sm: 0.8rem; /* ~13px */
   --leading-sm: 1.25rem;
   --text-base: 1rem; /* 16px — body */
   --leading-base: 1.5rem;
-  --text-lg: 1.25rem; /* 20px */
+  --text-lg: 1.25rem; /* ~20px */
   --leading-lg: 1.75rem;
-  --text-xl: 1.5625rem; /* 25px */
+  --text-xl: 1.5625rem; /* ~25px */
   --leading-xl: 2rem;
   --text-2xl: 1.953125rem; /* ~31px */
   --leading-2xl: 2.375rem;
-  --text-3xl: 2.44140625rem; /* ~39px */
+  --text-3xl: 2.441406rem; /* ~39px */
   --leading-3xl: 2.875rem;
-  --text-4xl: 3.0517578125rem; /* ~49px */
+  --text-4xl: 3.051758rem; /* ~49px */
   --leading-4xl: 3.5rem;
-  --text-5xl: 3.814697265625rem; /* ~61px */
+  --text-5xl: 3.814697rem; /* ~61px */
   --leading-5xl: 1;
-  --text-6xl: 4.76837158203125rem; /* ~76px */
+  --text-6xl: 4.768372rem; /* ~76px */
   --leading-6xl: 1;
-  --text-7xl: 5.9604644775390625rem; /* ~95px */
+  --text-7xl: 5.960464rem; /* ~95px */
   --leading-7xl: 1;
-  --text-8xl: 7.450580596923828rem; /* ~119px */
+  --text-8xl: 7.450581rem; /* ~119px */
   --leading-8xl: 1;
-  --text-9xl: 9.313225746154785rem; /* ~149px */
+  --text-9xl: 9.313226rem; /* ~149px */
   --leading-9xl: 1;
+  /* TYPE-SCALE-BLOCK:END */
 
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;

@@ -20,9 +20,14 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 pnpm install
 pnpm build
 pnpm test        # Vitest (e.g. `cn()` in @seventythree/ui)
+pnpm generate:type-scale   # Regenerate type scale in primitives.css (see scripts/generate-type-scale.mjs)
 pnpm storybook   # http://localhost:6006
 pnpm --filter @seventythree/docs dev
 ```
+
+### Type scale (modular)
+
+Run `pnpm generate:type-scale` to rewrite the block between `TYPE-SCALE-BLOCK:START/END` in `packages/tokens/src/themes/primitives.css`. Use `--ratio 1.2` (Minor Third) or `--ratio 1.25` (Major Third, default). Then `pnpm --filter @seventythree/tokens build` (or `pnpm build`) so `dist/` matches.
 
 ## GitHub Pages
 
