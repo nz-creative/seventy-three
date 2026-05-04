@@ -9,6 +9,7 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "generate:type-scale": "node scripts/generate-type-scale.mjs",
+    "changelog:ai": "node scripts/update-changelog-ai.mjs",
     "check:type-scale": "node scripts/generate-type-scale.mjs --check",
     "storybook": "pnpm --filter @seventythree/storybook storybook",
     "build-storybook": "pnpm --filter @seventythree/storybook build-storybook"

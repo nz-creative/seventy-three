@@ -45,3 +45,17 @@ Update **[CHANGELOG.md](./CHANGELOG.md)** when you merge user-visible or structu
 2. When you **publish packages** or want a **dated snapshot**, move **`[Unreleased]`** content into a new **`## [x.y.z] — YYYY-MM-DD`** section and clear **`[Unreleased]`** (or leave a short placeholder).
 
 [Changesets](https://github.com/changesets/changesets) can still drive **per-package** release notes for npm. Keep **root `CHANGELOG.md`** as the **whole-system** rolling history unless you automate syncing.
+
+## Changelog (AI)
+
+Optional automation updates **`[Unreleased]`** using **`scripts/update-changelog-ai.mjs`** (OpenAI API).
+
+**Local:** `OPENAI_API_KEY=sk-... pnpm changelog:ai`
+
+**GitHub Actions:** add repository secret **`OPENAI_API_KEY`**. Workflow **`.github/workflows/changelog-ai.yml`** runs on **`push` to `main`** with **`paths-ignore: CHANGELOG.md`** so the bot commit does not loop. **Actions → Changelog (AI) → Run workflow** for a manual run.
+
+Optional repository variable **`OPENAI_MODEL`** (defaults to **`gpt-4o-mini`**).
+
+If **`OPENAI_API_KEY`** is missing in CI, the script exits **0** without updating.
+
+You can still edit **`CHANGELOG.md`** by hand; the next run merges with existing **`[Unreleased]`** bullets.

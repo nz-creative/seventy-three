@@ -83,4 +83,4 @@ Replace the `repository` URLs in each `package.json` with your Git remote before
 
 ## Changelog
 
-Rolling history of the design system (packages, docs, tooling): **[CHANGELOG.md](./CHANGELOG.md)**. Update the **`[Unreleased]`** section when you merge notable work; collapse into a dated version when you publish or snapshot.
+Rolling history: **[CHANGELOG.md](./CHANGELOG.md)**. **[Unreleased]** can be updated manually or by **`pnpm changelog:ai`** (requires **`OPENAI_API_KEY`**). CI workflow **`changelog-ai.yml`** runs on pushes to **`main`** that touch files other than **`CHANGELOG.md`**; add repo secret **`OPENAI_API_KEY`** (optional **`OPENAI_MODEL`** variable, default **`gpt-4o-mini`**).
