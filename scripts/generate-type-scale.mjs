@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
  * Regenerates the modular type scale block in primitives.css from --text-base (1rem)
- * and a ratio (default Major Third 1.25).
+ * and a ratio (default from scripts/type-scale.config.json).
  *
  * Usage:
  *   node scripts/generate-type-scale.mjs
- *   node scripts/generate-type-scale.mjs --ratio 1.2
+ *   node scripts/generate-type-scale.mjs --ratio 1.2          # override config for one run
  *   node scripts/generate-type-scale.mjs --ratio 1.333 --dry-run
- *   node scripts/generate-type-scale.mjs --check        # CI: fail if primitives.css drifts
+ *   node scripts/generate-type-scale.mjs --check              # CI: fail if primitives.css drifts
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
+const CONFIG_PATH = path.join(REPO_ROOT, "scripts/type-scale.config.json");
 const PRIMITIVES = path.join(
   REPO_ROOT,
   "packages/tokens/src/themes/primitives.css",
@@ -23,7 +24,7 @@ const PRIMITIVES = path.join(
 const MARKER_START = "/* TYPE-SCALE-BLOCK:START */";
 const MARKER_END = "/* TYPE-SCALE-BLOCK:END */";
 
-const DEFAULT_RATIO = 1.25;
+const FALLBACK_RATIO = 1.25;
 const BASE_REM = 1;
 
 /** Tailwind step → exponent offset from base (base = 0). */
@@ -55,29 +56,53 @@ const LEADING_REM = {
   "4xl": 3.5,
 };
 
+function loadConfigRatio() {
+  try {
+    const raw = fs.readFileSync(CONFIG_PATH, "utf8");
+    const data = JSON.parse(raw);
+    const r = Number(data.ratio);
+    if (Number.isFinite(r) && r > 0) return r;
+  } catch {
+    // missing or invalid config
+  }
+  return FALLBACK_RATIO;
+}
+
 function parseArgs() {
   const argv = process.argv.slice(2);
-  let ratio = DEFAULT_RATIO;
+  let ratioFromCli = null;
   let dryRun = false;
   let check = false;
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--ratio" && argv[i + 1]) {
-      ratio = Number(argv[++i]);
+      ratioFromCli = Number(argv[++i]);
     } else if (argv[i] === "--dry-run") {
       dryRun = true;
     } else if (argv[i] === "--check") {
       check = true;
     }
   }
-  if (!Number.isFinite(ratio) || ratio <= 0) {
+  const configRatio = loadConfigRatio();
+  const ratio =
+    ratioFromCli != null && Number.isFinite(ratioFromCli) && ratioFromCli > 0
+      ? ratioFromCli
+      : configRatio;
+
+  if (ratioFromCli != null && (!Number.isFinite(ratioFromCli) || ratioFromCli <= 0)) {
     console.error("Invalid --ratio; use a positive number (e.g. 1.25)");
+    process.exit(1);
+  }
+  if (!Number.isFinite(ratio) || ratio <= 0) {
+    console.error(
+      `Invalid ratio from ${path.relative(REPO_ROOT, CONFIG_PATH)} or --ratio.`,
+    );
     process.exit(1);
   }
   if (dryRun && check) {
     console.error("Use either --dry-run or --check, not both.");
     process.exit(1);
   }
-  return { ratio, dryRun, check };
+  return { ratio, dryRun, check, ratioSource: ratioFromCli != null ? "cli" : "config" };
 }
 
 function formatRem(rem) {
@@ -90,7 +115,7 @@ function buildBlock(ratio) {
   const lines = [
     "  /* -------------------------------------------------------------------------",
     "     Layout — typography (modular scale; regenerate with pnpm run generate:type-scale)",
-    `     Ratio ${ratio}; base body ${BASE_REM}rem (16px). xs/sm below base; base…9xl above.`,
+    `     Ratio ${ratio} (from scripts/type-scale.config.json unless --ratio). Base body ${BASE_REM}rem (16px).`,
     "     ------------------------------------------------------------------------- */",
     `  --type-scale-ratio: ${ratio};`,
   ];
@@ -155,7 +180,7 @@ function inject(css, block) {
   return `${before}${MARKER_START}\n${block}  ${MARKER_END}${after}`;
 }
 
-const { ratio, dryRun, check } = parseArgs();
+const { ratio, dryRun, check, ratioSource } = parseArgs();
 const block = buildBlock(ratio);
 
 if (dryRun) {
@@ -169,14 +194,15 @@ if (check) {
   const next = inject(css, block);
   if (css !== next) {
     console.error(
-      `Type scale block in ${path.relative(REPO_ROOT, PRIMITIVES)} does not match generated output (ratio=${ratio}).\n` +
+      `Type scale block in ${path.relative(REPO_ROOT, PRIMITIVES)} does not match generated output (ratio=${ratio} from ${ratioSource}).\n` +
+        `Expected ratio from ${path.relative(REPO_ROOT, CONFIG_PATH)} (or pass --ratio).\n` +
         "Run: pnpm generate:type-scale\n" +
         "Then commit the updated primitives.css.",
     );
     process.exit(1);
   }
   console.log(
-    `OK: type scale matches generator (ratio=${ratio}).`,
+    `OK: type scale matches generator (ratio=${ratio}, source=${ratioSource}).`,
   );
   process.exit(0);
 }
@@ -184,5 +210,5 @@ if (check) {
 const next = inject(css, block);
 fs.writeFileSync(PRIMITIVES, next, "utf8");
 console.log(
-  `Updated ${path.relative(REPO_ROOT, PRIMITIVES)} (ratio=${ratio}).`,
+  `Updated ${path.relative(REPO_ROOT, PRIMITIVES)} (ratio=${ratio}, source=${ratioSource}).`,
 );

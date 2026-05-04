@@ -12,7 +12,7 @@ A **code-first** personal design system: semantic CSS variables, a **Tailwind pr
 ## Apps
 
 - **`apps/storybook`** — component development and a11y addon
-- **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens** (primitives + semantics + swatches), and **Typography**
+- **`apps/docs`** — Next.js site with **Overview**, **Installation**, **Tokens**, **Typography**, **Components** (links to Storybook)
 
 ## Development
 
@@ -28,9 +28,11 @@ pnpm --filter @seventythree/docs dev
 
 ### Type scale (modular)
 
-Run `pnpm generate:type-scale` to rewrite the block between `TYPE-SCALE-BLOCK:START/END` in `packages/tokens/src/themes/primitives.css`. Use `--ratio 1.2` (Minor Third) or `--ratio 1.25` (Major Third, default). Then `pnpm --filter @seventythree/tokens build` (or `pnpm build`) so `dist/` matches.
+Canonical ratio lives in **`scripts/type-scale.config.json`** (`ratio`, default `1.25`). **`pnpm generate:type-scale`** reads that file and rewrites the block between `TYPE-SCALE-BLOCK:START/END` in `packages/tokens/src/themes/primitives.css`. Override for one run with **`pnpm generate:type-scale --ratio 1.2`**. Then `pnpm --filter @seventythree/tokens build` (or `pnpm build`) so `dist/` matches.
 
-CI runs `pnpm check:type-scale` so hand-edited `--text-*` lines cannot drift from the script without failing the build.
+**`pnpm check:type-scale`** (also in CI) verifies `primitives.css` matches the generator using **the config ratio** unless you pass **`--ratio`** on the check command.
+
+Production docs builds set **`NEXT_PUBLIC_STORYBOOK_URL`** in [deploy-site.yml](./.github/workflows/deploy-site.yml) so the Components page links to Storybook on GitHub Pages.
 
 ## GitHub Pages
 

@@ -62,9 +62,15 @@ export default function HomePage() {
           >
             Typography
           </Link>{" "}
-          for defaults and overrides.
+          for defaults and overrides. Browse shipped UI in{" "}
+          <Link
+            href="/components"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Components
+          </Link>
+          .
         </p>
-      </DocSection>
     </DocPage>
   );
 }

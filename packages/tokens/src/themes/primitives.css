@@ -144,7 +144,7 @@
   /* TYPE-SCALE-BLOCK:START */
   /* -------------------------------------------------------------------------
      Layout — typography (modular scale; regenerate with pnpm run generate:type-scale)
-     Ratio 1.25; base body 1rem (16px). xs/sm below base; base…9xl above.
+     Ratio 1.25 (from scripts/type-scale.config.json unless --ratio). Base body 1rem (16px).
      ------------------------------------------------------------------------- */
   --type-scale-ratio: 1.25;
   --text-xs: 0.64rem; /* ~10px */

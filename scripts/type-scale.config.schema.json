@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://seventythree.dev/schemas/type-scale.config.json",
+  "title": "Type scale generator config",
+  "type": "object",
+  "required": ["ratio"],
+  "additionalProperties": false,
+  "properties": {
+    "ratio": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Modular scale multiplier (e.g. 1.25 Major Third, 1.2 Minor Third)."
+    }
+  }
+}
