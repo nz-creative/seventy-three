@@ -80,3 +80,7 @@ pnpm publish -r
 ```
 
 Replace the `repository` URLs in each `package.json` with your Git remote before publishing.
+
+## Changelog
+
+Rolling history of the design system (packages, docs, tooling): **[CHANGELOG.md](./CHANGELOG.md)**. Update the **`[Unreleased]`** section when you merge notable work; collapse into a dated version when you publish or snapshot.

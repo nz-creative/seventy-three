@@ -36,3 +36,12 @@ Stories live under **`apps/storybook/src/`**. **`eslint-plugin-jsx-a11y`** (reco
 - **Tokens first** — semantic colors and type scale from **`primitives.css`** / **`seventythree.css`**; avoid raw Tailwind palette names in components when a token exists.
 - **Focus** — `focus-visible` rings aligned with **`ring`** tokens (see **Input** / **Button**).
 - **Form controls** — shared chrome lives in **`packages/ui/src/lib/control-styles.ts`** (`controlFieldBaseClasses`); extend there when adding **Select** / **Checkbox** surfaces.
+
+## Changelog
+
+Update **[CHANGELOG.md](./CHANGELOG.md)** when you merge user-visible or structural changes:
+
+1. Add bullets under **`## [Unreleased]`** (Added / Changed / Fixed / Removed).
+2. When you **publish packages** or want a **dated snapshot**, move **`[Unreleased]`** content into a new **`## [x.y.z] — YYYY-MM-DD`** section and clear **`[Unreleased]`** (or leave a short placeholder).
+
+[Changesets](https://github.com/changesets/changesets) can still drive **per-package** release notes for npm. Keep **root `CHANGELOG.md`** as the **whole-system** rolling history unless you automate syncing.
