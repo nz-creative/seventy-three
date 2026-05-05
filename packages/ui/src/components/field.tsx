@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
-import { Label } from "./label";
+import { fieldAriaDescribedBy, fieldIdSuffixFromReactId } from "../lib/field-ids";
 import { cn } from "../lib/utils";
+import { Label } from "./label";
 
 type FieldContextValue = {
   controlId: string;
@@ -39,7 +40,7 @@ function Field({
   ...props
 }: FieldProps) {
   const base = React.useId();
-  const suffix = base.replace(/:/g, "");
+  const suffix = fieldIdSuffixFromReactId(base);
   const controlId = `field-control-${suffix}`;
   const descriptionId = `field-desc-${suffix}`;
   const errorId = `field-err-${suffix}`;
@@ -157,12 +158,12 @@ const FieldControl = React.forwardRef<HTMLElement, FieldControlProps>(
       errorPresent,
     } = useField();
 
-    const describedBy = [
-      hintPresent ? descriptionId : null,
-      errorPresent ? errorId : null,
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const describedBy = fieldAriaDescribedBy({
+      hintPresent,
+      errorPresent,
+      descriptionId,
+      errorId,
+    });
 
     return (
       <Slot
@@ -170,7 +171,7 @@ const FieldControl = React.forwardRef<HTMLElement, FieldControlProps>(
         data-slot="field-control"
         id={controlId}
         aria-invalid={invalid || undefined}
-        aria-describedby={describedBy || undefined}
+        aria-describedby={describedBy}
         {...props}
       />
     );
