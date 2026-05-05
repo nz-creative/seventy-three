@@ -15,6 +15,14 @@ const STORIES = [
   { label: "Button", path: "/story/components-button--default" },
   { label: "Card", path: "/story/components-card--default" },
   {
+    label: "Dialog",
+    path: "/story/components-dialog--default",
+  },
+  {
+    label: "Field",
+    path: "/story/components-field--with-hint",
+  },
+  {
     label: "Input, Label, Textarea",
     path: "/story/components-form-fields--label-and-input",
   },
