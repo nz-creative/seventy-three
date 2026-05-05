@@ -11,6 +11,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dat
 - **UI** — Radix-based `Dialog` composite; `Field` pattern (`FieldLabel`, `FieldHint`, `FieldError`, `FieldControl`) with aria wiring
 - **Storybook** — stories for Dialog and Field
 - **Docs** — Components page links to Dialog and Field stories; home preview moved to a client boundary for Next.js
+- **Docs** — Patterns page (Field + Dialog usage, Storybook links, Next.js client-boundary note)
+- **UI** — `field-ids` helpers for Field wiring; Vitest coverage for id suffix and `aria-describedby`
+
+### Changed
+
+- **Field** — uses shared `fieldAriaDescribedBy` / `fieldIdSuffixFromReactId` helpers
 
 ### Fixed
 

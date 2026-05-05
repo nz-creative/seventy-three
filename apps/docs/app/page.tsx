@@ -57,7 +57,15 @@ export default function HomePage() {
           >
             Typography
           </Link>{" "}
-          for defaults and overrides. Browse shipped UI in{" "}
+          for defaults and overrides. For <InlineCode>Field</InlineCode> and{" "}
+          <InlineCode>Dialog</InlineCode> composition, read{" "}
+          <Link
+            href="/patterns"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Patterns
+          </Link>
+          . Browse shipped UI in{" "}
           <Link
             href="/components"
             className="font-medium text-accent underline-offset-4 hover:underline"

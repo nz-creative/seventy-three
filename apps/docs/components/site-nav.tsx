@@ -5,6 +5,7 @@ const links = [
   { href: "/installation", label: "Installation" },
   { href: "/tokens", label: "Tokens" },
   { href: "/typography", label: "Typography" },
+  { href: "/patterns", label: "Patterns" },
   { href: "/components", label: "Components" },
 ] as const;
 

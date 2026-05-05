@@ -78,6 +78,20 @@ export default function ComponentsPage() {
         </ul>
       </DocSection>
 
+      <DocSection title="Patterns">
+        <p>
+          For form field wiring (<InlineCode>Field</InlineCode>) and modal
+          composition (<InlineCode>Dialog</InlineCode>), see{" "}
+          <Link
+            href="/patterns"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Patterns
+          </Link>
+          .
+        </p>
+      </DocSection>
+
       <DocSection title="Install">
         <p>
           See{" "}
