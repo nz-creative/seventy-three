@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { Button } from "@seventythree/ui";
-
 import { DocPage, DocSection } from "../components/doc-page";
+import { HomePreview } from "../components/home-preview";
 import { InlineCode } from "../components/inline-code";
 
 export default function HomePage() {
@@ -29,11 +28,7 @@ export default function HomePage() {
       </DocSection>
 
       <DocSection title="Preview">
-        <div className="flex flex-wrap gap-3">
-          <Button>Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-        </div>
+        <HomePreview />
       </DocSection>
 
       <DocSection title="Next steps">
@@ -71,6 +66,7 @@ export default function HomePage() {
           </Link>
           .
         </p>
+      </DocSection>
     </DocPage>
   );
 }

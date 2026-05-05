@@ -8,7 +8,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Dat
 
 ### Added
 
-- _(Add bullet points under Added / Changed / Fixed / Removed as you merge work.)_
+- **UI** — Radix-based `Dialog` composite; `Field` pattern (`FieldLabel`, `FieldHint`, `FieldError`, `FieldControl`) with aria wiring
+- **Storybook** — stories for Dialog and Field
+- **Docs** — Components page links to Dialog and Field stories; home preview moved to a client boundary for Next.js
+
+### Fixed
+
+- **Docs** — Missing closing `</DocSection>` on the home page (ESLint parse error)
 
 ---
 
